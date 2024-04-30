@@ -46,6 +46,9 @@ programs.hyprland.enable = true;
 programs.hyprland.xwayland.enable = true;
 environment.sessionVariables.NIXOS_OZONE_WL = "1";
   
+# Enable flakes 
+nix.settings.experimental-features = ["nix-command" "flakes"];
+
 # Zsh
 programs.zsh.enable = true;
 users.defaultUserShell = pkgs.zsh;
