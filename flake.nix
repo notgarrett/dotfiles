@@ -12,11 +12,10 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./configuration.nix
-         inputs.home-manager.nixosModules.default
-      ];
+      specialArgs = { inherit inputs; };
+      modules =
+        [ ./configuration.nix 
+          inputs.home-manager.nixosModules.default ];
     };
   };
 }

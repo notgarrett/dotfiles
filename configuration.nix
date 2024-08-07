@@ -2,18 +2,23 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
+
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      ./modules/hyprland.nix
     ];
+
+  hyprland.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -30,26 +35,8 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
-
-# Hyyprland pain
-services.greetd = {
-  enable = true;
-  settings = rec {
-    initial_session = {
-      command = "${pkgs.hyprland}/bin/Hyprland";
-      user = "garrett";
-    };
-    default_session = initial_session;
-  };
-};
-
-programs.hyprland.enable = true; 
-programs.hyprland.xwayland.enable = true;
-environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
 # Enable flakes 
 nix.settings.experimental-features = ["nix-command" "flakes"];
-
 # Zsh
 programs.zsh.enable = true;
 users.defaultUserShell = pkgs.zsh;
@@ -59,12 +46,15 @@ programs.starship.enable = true;
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  gamescopeSession.enable = true;
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 };
 
+programs.gamemode.enable = true;
+
 
 home-manager = {
-  specialArgs = {inherit inputs; };
+  extraSpecialArgs = {inherit inputs; };
   users = {
     "garrett" = import ./home.nix;
   };
@@ -128,11 +118,13 @@ fonts.packages = with pkgs; [
       eza
       bat
       ripgrep
-      discord
       waybar
       hyprpaper
       spotify
-    #  thunderbird
+      prismlauncher
+      obsidian
+      fastfetch
+      #  thunderbird
     ];
   };
 
@@ -144,6 +136,39 @@ fonts.packages = with pkgs; [
   environment.systemPackages = with pkgs; [
     neovim
     starship
+    (pkgs.discord.override {
+      # remove any overrides that you don't want
+      withOpenASAR = true;
+      withVencord = true;
+    })
+    git
+    xdg-desktop-portal-gtk
+    python3
+    wineWowPackages.stable
+    wineWowPackages.waylandFull
+    winetricks
+    lutris
+    r2modman
+    sumneko-lua-language-server
+    nodePackages.typescript-language-server
+    typescript
+    rust-analyzer
+    nodejs
+    cargo
+    rustc
+    rustfmt
+    openssl
+    pkg-config
+    obs-studio
+    vscode-extensions.vadimcn.vscode-lldb
+    corepack_22
+    unityhub
+    gdb
+    lldb_18
+    nil
+    nixfmt
+    blender
+         # List package dependencies here
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
