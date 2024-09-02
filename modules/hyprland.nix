@@ -10,7 +10,7 @@ with lib;
     };
   };
 
-  config = mkIf config.myModule.enable {
+  config = mkIf config.hyprland.enable {
     environment.systemPackages = with pkgs;
       [
         # Add packages you want to install
@@ -37,9 +37,5 @@ with lib;
     programs.hyprland.xwayland.enable = true;
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-    services.myService = {
-      enable = true;
-      # Additional service configuration
-    };
   };
 }
