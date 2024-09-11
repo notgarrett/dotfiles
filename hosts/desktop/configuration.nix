@@ -12,8 +12,10 @@
     ./modules/postgres.nix
     ./modules/nvidia.nix
     ./modules/steam.nix
+    ./modules/language-servers.nix
   ];
 
+  language-servers.enable = true;
   hyprland.enable = true;
   nvidia.enable = true;
   postgres.enable = true;
@@ -138,12 +140,15 @@
     openssl
     pkg-config
     obs-studio
+    vscode-extensions.vadimcn.vscode-lldb
     corepack_22
     unityhub
     gdb
     julia-bin
     nil
+    nixfmt
     blender
+    omnisharp-roslyn
     libgccjit
     openssl.dev
     pkg-config

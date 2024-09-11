@@ -10,11 +10,11 @@ with lib; {
   };
 
   config = mkIf config.hyprland.enable {
-    environment.systemPackages = with pkgs;
-      [
-        # Add packages you want to install
-        hyprpaper
-      ];
+    environment.systemPackages = with pkgs; [
+      # Add packages you want to install
+      xdg-desktop-portal-gtk
+      hyprpaper
+    ];
 
     xdg.portal = {
       enable = true;
