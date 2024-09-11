@@ -17,9 +17,10 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
+  home.packages = with pkgs;
+    [
 
-  ];
+    ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -59,9 +60,7 @@
   #
   #  /etc/profiles/per-user/garrett/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-     EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
