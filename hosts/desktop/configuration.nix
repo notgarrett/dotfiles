@@ -8,11 +8,11 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
-    ./modules/hyprland.nix
-    ./modules/postgres.nix
-    ./modules/nvidia.nix
-    ./modules/steam.nix
-    ./modules/language-servers.nix
+    ../../modules/hyprland.nix
+    ../../modules/postgres.nix
+    ../../modules/nvidia.nix
+    ../../modules/steam.nix
+    ../../modules/language-servers.nix
   ];
 
   language-servers.enable = true;
@@ -25,7 +25,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -48,17 +48,10 @@
   programs.starship.enable = true;
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    users = { "garrett" = import ./home.nix; };
+    users = { "garrett" = import ../../home.nix; };
   };
 
-  # Bundling of x11 
-  #  services.xserver= {
-  #  enable = true; 
-  # displayManager.sddm.enable = true;
-  # desktopManager.plasma5.enable = true;
-  # layout = "us";
-  # xkbVariant = "";
-  # };
+services.fwupd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -74,14 +67,7 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -109,8 +95,6 @@
       eza
       bat
       ripgrep
-      waybar
-      hyprpaper
       spotify
       prismlauncher
       obsidian
@@ -140,7 +124,6 @@
     openssl
     pkg-config
     obs-studio
-    vscode-extensions.vadimcn.vscode-lldb
     corepack_22
     unityhub
     gdb
@@ -148,7 +131,6 @@
     nil
     nixfmt
     blender
-    omnisharp-roslyn
     libgccjit
     openssl.dev
     pkg-config

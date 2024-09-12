@@ -14,6 +14,7 @@ with lib; {
       # Add packages you want to install
       xdg-desktop-portal-gtk
       hyprpaper
+      waybar
     ];
 
     xdg.portal = {

@@ -19,6 +19,11 @@
   # environment.
   home.packages = with pkgs;
     [
+    neovim
+    starship
+    ripgrep
+    bat
+
 
     ];
 
@@ -37,11 +42,11 @@
     # '';
   };
   #
-  # programs.git = {
-  #   enable = true;
-  #   userEmail = "garrettrgiles@gmail.com";
-  #   userName = "notgarrett";
-  # };
+  programs.git = {
+    enable = true;
+    userEmail = "garrettrgiles@gmail.com";
+    userName = "notgarrett";
+  };
   #
 
   # Home Manager can also manage your environment variables through
