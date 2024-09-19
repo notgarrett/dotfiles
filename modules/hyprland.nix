@@ -15,6 +15,7 @@ with lib; {
       xdg-desktop-portal-gtk
       hyprpaper
       waybar
+      wl-clipboard
     ];
 
     xdg.portal = {

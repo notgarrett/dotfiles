@@ -22,10 +22,21 @@
   networking.hostName = "framework"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+services.tor = {
+  enable = true;
+};
+services.tor.settings = {
+      UseBridges = true;
+      ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
+      Bridge = "obfs4 IP:ORPort [fingerprint]";
+};
+services.tor.client.enable = true;
+
+
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -94,7 +105,7 @@ services.fwupd.enable = true;
       obsidian
       fastfetch
       kitty
-
+      tor-browser-bundle-bin
       #  thunderbird
     ];
   };
