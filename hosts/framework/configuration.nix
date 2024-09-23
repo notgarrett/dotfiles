@@ -22,17 +22,13 @@
   networking.hostName = "framework"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-services.tor = {
-  enable = true;
-};
-services.tor.settings = {
-      UseBridges = true;
-      ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
-      Bridge = "obfs4 IP:ORPort [fingerprint]";
-};
-services.tor.client.enable = true;
-
-
+  services.tor = { enable = true; };
+  services.tor.settings = {
+    UseBridges = true;
+    ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
+    Bridge = "obfs4 IP:ORPort [fingerprint]";
+  };
+  services.tor.client.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -56,7 +52,7 @@ services.tor.client.enable = true;
     users = { "garrett" = import ../../home.nix; };
   };
 
-services.fwupd.enable = true;
+  services.fwupd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

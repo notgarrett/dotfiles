@@ -19,13 +19,19 @@
   # environment.
   home.packages = with pkgs;
     [
-    neovim
-    starship
-    ripgrep
-    bat
-
+      neovim
+      ripgrep
+      bat
+      starship
+(flameshot.override { enableWlrSupport = true; })
+      zathura
 
     ];
+
+  imports = [ ./home-manager/zsh.nix
+    #./home-manager/git.nix
+
+  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

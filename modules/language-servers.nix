@@ -18,7 +18,7 @@ with lib; {
       sumneko-lua-language-server
       nodePackages.typescript-language-server
       rust-analyzer
-      rust-analyzer
+      pyright
       # Add packages you want to install
     ];
   };

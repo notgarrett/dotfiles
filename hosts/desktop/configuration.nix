@@ -51,7 +51,7 @@
     users = { "garrett" = import ../../home.nix; };
   };
 
-services.fwupd.enable = true;
+  services.fwupd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
