@@ -36,6 +36,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  services.upower.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Toronto";
 
@@ -53,6 +55,7 @@
   };
 
   services.fwupd.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
