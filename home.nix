@@ -25,6 +25,7 @@
       starship
 (flameshot.override { enableWlrSupport = true; })
       zathura
+      filezilla
 
     ];
 
