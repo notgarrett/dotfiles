@@ -16,15 +16,10 @@
       size = 10000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
-    zplug = {
-      enable = true;
-      plugins = [{
-        name = "zsh-users/zsh-autosuggestions";
-      }
-        {name = "jeffreytse/zsh-vi-mode";}
-        # Simple plugin installation
-        ];
-    };
-
+    oh-my-zsh = {
+	enable = true;
+    	plugins = [ "git" "thefuck", "vim" ];
+  };
+    
   };
 }

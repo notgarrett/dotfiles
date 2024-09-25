@@ -26,6 +26,7 @@
 (flameshot.override { enableWlrSupport = true; })
       zathura
       filezilla
+      zed-editor
 
     ];
 
