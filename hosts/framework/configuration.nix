@@ -13,18 +13,13 @@
   ];
 
   language-servers.enable = true;
-
-  services.xserver = {
-	enable = true;
-	displayManager.gdm.enable = true;
-	desktopManager.gnome.enable = true;
-  };
+  hyprland.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "hplaptop"; # Define your hostname.
+  networking.hostName = "framework"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.tor = { enable = true; };

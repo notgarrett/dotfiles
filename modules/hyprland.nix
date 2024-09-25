@@ -13,6 +13,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       # Add packages you want to install
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
       hyprpaper
       waybar
       wl-clipboard
@@ -39,8 +40,8 @@ with lib; {
     environment = {
       sessionVariables = {
         NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
-        WLR_NO_HARDWARE_CURSORS =
-          "1"; # Fix cursor rendering issue on wlr nvidia.
+         WLR_NO_HARDWARE_CURSORS =
+           "1"; # Fix cursor rendering issue on wlr nvidia.
 
         XDG_CURRENT_DESKTOP = "Hyprland";
         XDG_SESSION_TYPE = "wayland";
