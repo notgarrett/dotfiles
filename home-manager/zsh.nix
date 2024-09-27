@@ -18,7 +18,7 @@
     };
     oh-my-zsh = {
 	enable = true;
-    	plugins = [ "git" "thefuck", "vim" ];
+    	plugins = [ "git" "vi-mode" ];
   };
     
   };
