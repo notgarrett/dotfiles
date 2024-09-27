@@ -12,13 +12,16 @@
     ../../modules/language-servers.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  hyprland.enable = true;
   language-servers.enable = true;
 
-  services.xserver = {
-	enable = true;
-	displayManager.gdm.enable = true;
-	desktopManager.gnome.enable = true;
-  };
+  # services.xserver = {
+	#enable = true;
+	#displayManager.gdm.enable = true;
+	#desktopManager.gnome.enable = true;
+ # };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
