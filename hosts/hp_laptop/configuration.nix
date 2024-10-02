@@ -17,11 +17,11 @@
   hyprland.enable = true;
   language-servers.enable = true;
 
-  # services.xserver = {
-	#enable = true;
-	#displayManager.gdm.enable = true;
-	#desktopManager.gnome.enable = true;
- # };
+  #   services.xserver = {
+  #	enable = true;
+  #	displayManager.gdm.enable = true;
+  #	desktopManager.gnome.enable = true;
+  # };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -30,12 +30,6 @@
   networking.hostName = "hplaptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  services.tor = { enable = true; };
-  services.tor.settings = {
-    UseBridges = true;
-    ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
-    Bridge = "obfs4 IP:ORPort [fingerprint]";
-  };
   services.tor.client.enable = true;
 
   # Configure network proxy if necessary
@@ -69,7 +63,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

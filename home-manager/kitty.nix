@@ -1,6 +1,3 @@
-{ config, pkgs, ... }:
-{
-  programs.kitty = {
-  shellIntegration.enableZshIntegration = true;
-  };
+{ config, pkgs, ... }: {
+  programs.kitty = { shellIntegration.enableZshIntegration = true; };
 }

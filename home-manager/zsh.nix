@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -17,9 +16,9 @@
       path = "${config.xdg.dataHome}/zsh/history";
     };
     oh-my-zsh = {
-	enable = true;
-    	plugins = [ "git" "vi-mode" ];
-  };
-    
+      enable = true;
+      plugins = [ "git" "vi-mode" ];
+    };
+
   };
 }

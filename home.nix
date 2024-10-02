@@ -17,20 +17,20 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs;
-    [
-      neovim
-      ripgrep
-      bat
-      starship
-(flameshot.override { enableWlrSupport = true; })
-      zathura
-      filezilla
-      zed-editor
+  home.packages = with pkgs; [
+    neovim
+    ripgrep
+    bat
+    starship
+    (flameshot.override { enableWlrSupport = true; })
+    zathura
+    filezilla
+    plantuml
 
-    ];
+  ];
 
-  imports = [ ./home-manager/zsh.nix
+  imports = [
+    ./home-manager/zsh.nix
     #./home-manager/git.nix
 
   ];
