@@ -10,7 +10,7 @@ with lib; {
     };
   };
 
-  config = mkIf config.hyprland.enable {
+  config = mkIf config.postgres.enable {
     services.postgresql = {
 
       enable = true;
