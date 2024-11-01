@@ -13,11 +13,13 @@
     ../../modules/nvidia.nix
     ../../modules/steam.nix
     ../../modules/language-servers.nix
+    ../../modules/kde.nix
   ];
 
   language-servers.enable = true;
   hyprland.enable = true;
-  nvidia.enable = true;
+  nvidia.enable = false;
+  kde.enable = true;
   postgres.enable = true;
   steam.enable = true;
 
