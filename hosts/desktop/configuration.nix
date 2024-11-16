@@ -23,6 +23,10 @@
   postgres.enable = true;
   steam.enable = true;
 
+
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -36,7 +40,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+   networking.networkmanager.wifi.backend = "iwd";
+  # networking.networkmanager.wifi.backend = "wpa_supplicant";
+
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -138,6 +144,8 @@
     openssl.dev
     pkg-config
     libreoffice
+    hyprcursor
+    gtk3
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
