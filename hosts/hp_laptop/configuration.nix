@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -10,12 +10,17 @@
     inputs.home-manager.nixosModules.default
     ../../modules/hyprland.nix
     ../../modules/language-servers.nix
+    ../../modules/steam.nix
+    ../../modules/kde.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  hyprland.enable = true;
+  hyprland.enable = false;
+  kde.enable = true;
+  steam.enable = true;
   language-servers.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   #   services.xserver = {
   #	enable = true;
@@ -106,12 +111,11 @@
       fastfetch
       kitty
       tor-browser-bundle-bin
+      pavucontrol
       #  thunderbird
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -141,10 +145,13 @@
     openssl.dev
     pkg-config
     libreoffice
+    google-chrome
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,12 +22,16 @@
     ripgrep
     bat
     starship
-    (flameshot.override { enableWlrSupport = true; })
     zathura
     filezilla
     plantuml
-
+    jetbrains.idea-ultimate 
   ];
+
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  "idea-ultimate"
+  ];         
 
   imports = [
     ./home-manager/zsh.nix
