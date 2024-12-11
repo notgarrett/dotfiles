@@ -16,7 +16,7 @@ with lib; {
       xdg-desktop-portal-hyprland
       hyprpaper
       waybar
-      wl-clipboard 
+      wl-clipboard
       hyprshot
     ];
 

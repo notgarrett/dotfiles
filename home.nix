@@ -25,13 +25,11 @@
     zathura
     filezilla
     plantuml
-    jetbrains.idea-ultimate 
+    jetbrains.idea-ultimate
   ];
 
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-  "idea-ultimate"
-  ];         
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [ "idea-ultimate" ];
 
   imports = [
     ./home-manager/zsh.nix
