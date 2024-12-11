@@ -33,7 +33,8 @@
     ];
 
   imports =
-    [ ./home-manager/zsh.nix ./home-manager/git.nix ./home-manager/nvim.nix ./home-manager/kitty.nix ];
+    [ ./home-manager/zsh.nix ./home-manager/git.nix #./home-manager/nvim.nix ./home-manager/kitty.nix 
+    ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
