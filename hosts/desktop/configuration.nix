@@ -23,8 +23,6 @@
   postgres.enable = true;
   steam.enable = true;
 
-
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader.
@@ -32,6 +30,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "desktop"; # Define your hostname.
+  networking.networkmanager.wifi.backend = "iwd";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -41,7 +40,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
   # networking.networkmanager.wifi.backend = "wpa_supplicant";
-
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -54,6 +52,7 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   programs.starship.enable = true;
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = { "garrett" = import ../../home.nix; };

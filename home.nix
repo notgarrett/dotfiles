@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, stylix,  ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -25,19 +25,16 @@
     zathura
     filezilla
     plantuml
-    jetbrains.idea-ultimate
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "idea-ultimate" ];
+    builtins.elem (lib.getName pkg) [
 
-  imports = [
-    ./home-manager/zsh.nix
-    ./home-manager/git.nix
-    ./home-manager/nvim.nix
-  ];
+    ];
 
-  stylix.enable = true;
+  imports =
+    [ ./home-manager/zsh.nix ./home-manager/git.nix ./home-manager/nvim.nix ./home-manager/kitty.nix ];
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -53,12 +50,12 @@
     # '';
   };
   #
-  programs.git = {
-    enable = true;
-    userEmail = "garrettrgiles@gmail.com";
-    userName = "notgarrett";
-  };
   #
+  
+  stylix.enable = true;
+stylix.image = ./animecarbackground.jpg;
+
+
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
