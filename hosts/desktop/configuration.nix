@@ -18,8 +18,8 @@
 
   language-servers.enable = true;
   hyprland.enable = true;
-  nvidia.enable = false;
-  kde.enable = true;
+  nvidia.enable = true;
+  kde.enable = false;
   postgres.enable = true;
   steam.enable = true;
 
@@ -40,7 +40,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-   networking.networkmanager.wifi.backend = "iwd";
   # networking.networkmanager.wifi.backend = "wpa_supplicant";
 
 
