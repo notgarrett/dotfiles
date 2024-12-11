@@ -13,13 +13,19 @@
     ../../modules/nvidia.nix
     ../../modules/steam.nix
     ../../modules/language-servers.nix
+    ../../modules/kde.nix
   ];
 
   language-servers.enable = true;
   hyprland.enable = true;
-  nvidia.enable = true;
+  nvidia.enable = false;
+  kde.enable = true;
   postgres.enable = true;
   steam.enable = true;
+
+
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -34,7 +40,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+   networking.networkmanager.wifi.backend = "iwd";
+  # networking.networkmanager.wifi.backend = "wpa_supplicant";
+
 
   # Set your time zone.
   time.timeZone = "America/Toronto";
@@ -135,6 +143,9 @@
     libgccjit
     openssl.dev
     pkg-config
+    libreoffice
+    hyprcursor
+    gtk3
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
