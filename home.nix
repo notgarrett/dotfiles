@@ -1,5 +1,4 @@
-{ config, pkgs, lib, stylix,  ... }:
-
+{ config, pkgs, lib,  ... }:
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -25,6 +24,7 @@
     zathura
     filezilla
     plantuml
+    base16-schemes
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -33,7 +33,8 @@
     ];
 
   imports =
-    [ ./home-manager/zsh.nix ./home-manager/git.nix #./home-manager/nvim.nix ./home-manager/kitty.nix 
+    [ ./home-manager/zsh.nix ./home-manager/git.nix
+      ./home-manager/stylix.nix#./home-manager/nvim.nix ./home-manager/kitty.nix 
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

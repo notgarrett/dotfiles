@@ -14,7 +14,6 @@
     ../../modules/steam.nix
     ../../modules/language-servers.nix
     ../../modules/kde.nix
-    ../../modules/stylix.nix
   ];
 
   language-servers.enable = true;
