@@ -1,11 +1,6 @@
 {config, pkgs, lib, ...}:
 {
 
-home.file = {
-  "~/.config/nvim" = {
-    source = ./nvim;
-  };
-};
 
 
   programs.neovim = 
@@ -23,13 +18,14 @@ home.file = {
     #    ${builtins.readFile ./lua/options.lua}
     # '';
 
-    extraLuaConfig = lib.fileContents ./nvim/init.lua;
+    extraLuaConfig = lib.fileContents ./init.lua;
 
 
 
 
 
-      # This is for later tbh.
+      # This is for later tbh. Not sure if I want to do plugin management like this but I am keeping the option open.
+
     /* plugins = with pkgs.vimPlugins; [
 
       nvim-lspconfig
@@ -155,4 +151,11 @@ home.file = {
     ];
       */
   };
+
+home.file = {
+  ".config/nvim" = {
+    source = ./nvim;
+    recursive = true;
+  };
+};
 }
