@@ -17,7 +17,6 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    neovim
     ripgrep
     bat
     starship
@@ -34,7 +33,7 @@
 
   imports =
     [ ./home-manager/zsh.nix ./home-manager/git.nix
-      ./home-manager/stylix.nix#./home-manager/nvim.nix ./home-manager/kitty.nix 
+      ./home-manager/stylix.nix ./home-manager/nvim/default.nix ./home-manager/kitty.nix 
     ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   programs.git = {
     enable = true;
-    userName = "NotGarrett";
+    userName = "notgarrett";
     userEmail = "garrettrgiles@gmail.com";
     aliases = {
       ci = "commit";
