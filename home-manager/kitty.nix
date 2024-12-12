@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   programs.kitty = { 
     enable = true;
-    shellIntegration.enableZshIntegration = true; };
+    shellIntegration.enableZshIntegration = true; 
     settings = {
     shell = "zsh";
     window_padding_width = 10;
@@ -12,5 +12,5 @@
     underline_hyperlinks = "never";
     copy_on_select = "clipboard";
   };
-  
+  };
 }

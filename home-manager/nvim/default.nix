@@ -1,8 +1,16 @@
-{config, pkgs, ...}:
+{config, pkgs, lib, ...}:
 {
+
+home.file = {
+  "~/.config/nvim" = {
+    source = ./nvim;
+  };
+};
+
+
   programs.neovim = 
     let 
-      configFile = file: builtins.readFile "./lua/config/${toString file}";
+      configFile = file: builtins.readFile "./nvim/lua/config/${toString file}";
     in
     {
     enable = true;
@@ -15,9 +23,10 @@
     #    ${builtins.readFile ./lua/options.lua}
     # '';
 
-      extraLuaConfig = ''
-        ${builtins.readFile ./init.lua}
-      ''
+    extraLuaConfig = lib.fileContents ./nvim/init.lua;
+
+
+
 
 
       # This is for later tbh.
