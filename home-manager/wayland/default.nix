@@ -5,7 +5,7 @@
 
 
 home.file = {
-  ".config/hyprland" = {
+  ".config/hypr" = {
     source = ./hyprland;
     recursive = true;
   };
