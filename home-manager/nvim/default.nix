@@ -2,6 +2,17 @@
 {
 
 
+ home.packages = with pkgs; [
+    libgccjit
+  ];
+
+home.file = {
+  ".config/nvim" = {
+    source = ./nvim;
+    recursive = true;
+  };
+};
+
 
   programs.neovim = 
     let 
@@ -19,6 +30,8 @@
     # '';
 
     extraLuaConfig = lib.fileContents ./init.lua;
+
+
 
 
 
@@ -152,10 +165,4 @@
       */
   };
 
-home.file = {
-  ".config/nvim" = {
-    source = ./nvim;
-    recursive = true;
-  };
-};
 }

@@ -11,6 +11,7 @@
     url_style = "none";
     underline_hyperlinks = "never";
     copy_on_select = "clipboard";
+    font_family = "FiraCode";
   };
   };
 }
