@@ -19,7 +19,6 @@
         modules = [
           ./hosts/desktop/configuration.nix
           #stylix.nixosModules.stylix
-          inputs.home-manager.nixosModules.default
         ];
       };
       framework = nixpkgs.lib.nixosSystem {
@@ -27,16 +26,13 @@
         modules = [
           ./hosts/framework/configuration.nix
           #stylix.nixosModules.stylix
-          inputs.home-manager.nixosModules.default
         ];
       };
       hplaptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/hp_laptop/configuration.nix
-
           #stylix.nixosModules.stylix
-          inputs.home-manager.nixosModules.default
         ];
       };
 
