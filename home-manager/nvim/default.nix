@@ -29,7 +29,7 @@ home.file = {
     #    ${builtins.readFile ./lua/options.lua}
     # '';
 
-    extraLuaConfig = lib.fileContents ./init.lua;
+    extraLuaConfig = builtins.readFile ./init.lua;
 
 
 
