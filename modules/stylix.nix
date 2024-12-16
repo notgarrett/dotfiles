@@ -4,7 +4,7 @@
 
     stylix = {
       enable = true;
-      image = ../animecarbackground.jpg;
+      image = ../images/animecarbackground.jpg;
       autoEnable = true;
       opacity = {
       terminal = 0.9;

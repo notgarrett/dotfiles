@@ -19,6 +19,7 @@
         modules = [
           ./hosts/desktop/configuration.nix
           #stylix.nixosModules.stylix
+          #          home-manager.nixosModules.home-manager.default
         ];
       };
       framework = nixpkgs.lib.nixosSystem {
