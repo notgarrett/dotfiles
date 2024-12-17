@@ -12,6 +12,7 @@
     ../../modules/language-servers.nix
     ../../modules/steam.nix
     ../../modules/kde.nix
+    ../../modules/stylix.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
