@@ -55,10 +55,13 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
   programs.starship.enable = true;
+  
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
     users = { "garrett" = import ../../home.nix; };
   };
+
 
   services.fwupd.enable = true;
   services.power-profiles-daemon.enable = true;
