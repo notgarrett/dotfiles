@@ -12,19 +12,25 @@
     ../../modules/postgres.nix
     ../../modules/nvidia.nix
     ../../modules/steam.nix
+    ../../modules/gnome.nix
     ../../modules/language-servers.nix
     ../../modules/kde.nix
     ../../modules/stylix.nix
   ];
 
   language-servers.enable = true;
-  hyprland.enable = true;
+  hyprland.enable = false;
   nvidia.enable = true;
   kde.enable = false;
   postgres.enable = true;
   steam.enable = true;
+  gnome.enable = true;
+
+
+  services.flatpak.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+ boot.kernelModules = [ "mt7921e" "rtl8192cu" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
