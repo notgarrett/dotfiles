@@ -24,6 +24,7 @@
     filezilla
     plantuml
     base16-schemes
+    ungoogled-chromium
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:

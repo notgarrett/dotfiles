@@ -19,12 +19,12 @@
   ];
 
   language-servers.enable = true;
-  hyprland.enable = false;
+  hyprland.enable = true;
   nvidia.enable = true;
   kde.enable = false;
   postgres.enable = true;
   steam.enable = true;
-  gnome.enable = true;
+  gnome.enable = false;
 
 
   services.flatpak.enable = true;
