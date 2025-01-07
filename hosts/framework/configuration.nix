@@ -92,7 +92,6 @@
     description = "garrett";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
       kate
       dolphin
       rofi-wayland

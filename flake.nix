@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     stylix.url = "github:danth/stylix";
 
@@ -12,28 +13,26 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, ... }@inputs: {
     nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {        
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/desktop/configuration.nix
-          #stylix.nixosModules.stylix
-          #          home-manager.nixosModules.home-manager.default
+          nixos-hardware.nixosModules.gigabyte-b550
+          nixos-hardware.nixosModules.intel-nuc-8i7beh
         ];
       };
       framework = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/framework/configuration.nix
-          #stylix.nixosModules.stylix
         ];
       };
       hplaptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/hp_laptop/configuration.nix
-          #stylix.nixosModules.stylix
         ];
       };
 

@@ -30,7 +30,24 @@
   services.flatpak.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
- boot.kernelModules = [ "mt7921e" "rtl8192cu" ];
+boot.kernelModules = [
+"brcmfmac"
+"brcmutil"
+"iwlmvm"
+"iwlwifi"
+"mmc_core"
+"mt76_usb"
+"mt76"
+"mt76x0_common"
+"mt76x02_lib"
+"mt76x02_usb"
+"mt76x0u"
+"r8188eu"
+"rtl_usb"
+"rtl8192c_common"
+"rtl8192cu"
+"rtlwifi"
+];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -102,7 +119,6 @@
     description = "garrett";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
       kate
       dolphin
       rofi-wayland
