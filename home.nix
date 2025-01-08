@@ -1,5 +1,4 @@
-{ config, pkgs, lib,  ... }:
-{
+{ config, pkgs, lib, ... }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "garrett";
@@ -32,12 +31,14 @@
 
     ];
 
-  imports =
-    [ ./home-manager/zsh.nix ./home-manager/git.nix
-      ./home-manager/nvim/default.nix ./home-manager/kitty.nix 
-      ./home-manager/firefox.nix ./home-manager/wayland/default.nix
-    ];
-
+  imports = [
+    ./home-manager/zsh.nix
+    ./home-manager/git.nix
+    ./home-manager/nvim/default.nix
+    ./home-manager/kitty.nix
+    ./home-manager/firefox.nix
+    ./home-manager/wayland/default.nix
+  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -55,7 +56,6 @@
   };
   #
   #
-  
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

@@ -19,6 +19,7 @@ with lib; {
       wl-clipboard
       hyprshot
       greetd.tuigreet
+      hyprcursor
     ];
 
     xdg.portal = {
@@ -30,7 +31,8 @@ with lib; {
       enable = true;
       settings = rec {
         initial_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --cmd Hyprland";
+          command =
+            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --cmd Hyprland";
           #command = "${pkgs.hyprland}/bin/Hyprland";
           user = "garrett";
         };

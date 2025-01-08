@@ -13,29 +13,26 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, ... }@inputs: {
-    nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {        
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/desktop/configuration.nix
-          nixos-hardware.nixosModules.gigabyte-b550
-          nixos-hardware.nixosModules.intel-nuc-8i7beh
-        ];
-      };
-      framework = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/framework/configuration.nix
-        ];
-      };
-      hplaptop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/hp_laptop/configuration.nix
-        ];
-      };
+  outputs =
+    { self, nixpkgs, home-manager, stylix, nixos-hardware, ... }@inputs: {
+      nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/desktop/configuration.nix
+            nixos-hardware.nixosModules.gigabyte-b550
+            nixos-hardware.nixosModules.intel-nuc-8i7beh
+          ];
+        };
+        framework = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/framework/configuration.nix ];
+        };
+        hplaptop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [ ./hosts/hp_laptop/configuration.nix ];
+        };
 
+      };
     };
-  };
 }

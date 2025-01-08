@@ -26,28 +26,9 @@
   steam.enable = true;
   gnome.enable = false;
 
-
   services.flatpak.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-boot.kernelModules = [
-"brcmfmac"
-"brcmutil"
-"iwlmvm"
-"iwlwifi"
-"mmc_core"
-"mt76_usb"
-"mt76"
-"mt76x0_common"
-"mt76x02_lib"
-"mt76x02_usb"
-"mt76x0u"
-"r8188eu"
-"rtl_usb"
-"rtl8192c_common"
-"rtl8192cu"
-"rtlwifi"
-];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -111,7 +92,8 @@ boot.kernelModules = [
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-    nerd-fonts.fira-code  ];
+    nerd-fonts.fira-code
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.garrett = {
@@ -130,7 +112,6 @@ boot.kernelModules = [
       obsidian
       fastfetch
       libreoffice-qt
-      #  thunderbird
     ];
   };
 
@@ -164,7 +145,6 @@ boot.kernelModules = [
     openssl.dev
     pkg-config
     libreoffice
-    hyprcursor
     gtk3
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
