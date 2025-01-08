@@ -18,6 +18,7 @@ with lib; {
       waybar
       wl-clipboard
       hyprshot
+      greetd.tuigreet
     ];
 
     xdg.portal = {
@@ -29,7 +30,8 @@ with lib; {
       enable = true;
       settings = rec {
         initial_session = {
-          command = "${pkgs.hyprland}/bin/Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --cmd Hyprland";
+          #command = "${pkgs.hyprland}/bin/Hyprland";
           user = "garrett";
         };
         default_session = initial_session;
