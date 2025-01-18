@@ -15,13 +15,15 @@
 
   outputs =
     { self, nixpkgs, home-manager, stylix, nixos-hardware, ... }@inputs: {
+       
+
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/desktop/configuration.nix
             nixos-hardware.nixosModules.gigabyte-b550
-            nixos-hardware.nixosModules.intel-nuc-8i7beh
+            home-manager.nixosModules.home-manager
           ];
         };
         framework = nixpkgs.lib.nixosSystem {

@@ -16,6 +16,7 @@
     ../../modules/language-servers.nix
     ../../modules/kde.nix
     ../../modules/stylix.nix
+    ../../modules/cloudflared.nix
   ];
 
   language-servers.enable = true;
@@ -63,6 +64,12 @@
     backupFileExtension = "backup";
     users = { "garrett" = import ../../home.nix; };
   };
+
+
+services.ollama = {
+  enable = true;
+  acceleration = "cuda";
+};
 
   services.fwupd.enable = true;
 
