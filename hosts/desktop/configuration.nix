@@ -65,11 +65,10 @@
     users = { "garrett" = import ../../home.nix; };
   };
 
-
-services.ollama = {
-  enable = true;
-  acceleration = "cuda";
-};
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 
   services.fwupd.enable = true;
 
@@ -134,6 +133,7 @@ services.ollama = {
     python3
     r2modman
     typescript
+    cloudflared
     nodejs
     cargo
     rustc

@@ -1,10 +1,9 @@
-{config }:
-{
+{ config, ... }: {
   services.cloudflared = {
     enable = true;
     tunnels = {
-      "" = {
-        credentialsFile = "${config.sops.secrets.cloudflared-creds.path}";
+      "f2a4f6ef-3df5-4360-914d-82c8460e7f6d" = {
+        credentialsFile = "/home/garrett/.cloudflared/cert.pem";
         ingress = {
           "llama.garrettg.dev" = {
             service = "http://localhost:5555";

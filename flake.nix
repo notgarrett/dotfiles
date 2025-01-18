@@ -15,7 +15,6 @@
 
   outputs =
     { self, nixpkgs, home-manager, stylix, nixos-hardware, ... }@inputs: {
-       
 
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
