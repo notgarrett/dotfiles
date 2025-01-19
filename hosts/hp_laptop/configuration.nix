@@ -13,6 +13,7 @@
     ../../modules/steam.nix
     ../../modules/kde.nix
     ../../modules/stylix.nix
+    ../../modules/cloudflared.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
