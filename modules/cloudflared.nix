@@ -13,8 +13,6 @@ sops.secrets."cloudflared/test" = {
 };
 
 
-
-
   services.cloudflared = {
     enable = true;
     tunnels = {

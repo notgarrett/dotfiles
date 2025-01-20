@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, sops, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -176,6 +176,13 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # SOPS Temporary, move to module.
+
+  sops.defaultSopsFile = ../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  
+  sops.age.keyFile = "/home/garrett/.config/sops/age/keys.txt";
 
   # Bluetooth things.
   hardware.bluetooth.enable = true; # enables support for Bluetooth
