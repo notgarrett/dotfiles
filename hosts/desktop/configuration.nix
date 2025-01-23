@@ -179,7 +179,7 @@
 
   # SOPS Temporary, move to module.
 
-  sops.defaultSopsFile = ../secrets/secrets.yaml;
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   
   sops.age.keyFile = "/home/garrett/.config/sops/age/keys.txt";

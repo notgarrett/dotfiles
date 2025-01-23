@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [ cloudflared ];
 
 
-sops.secrets."cloudflared/cert".path = "${config.home.homeDirectory}/.cloudflared/cert.pem";
+sops.secrets."cloudflared/cert".path = "/home/garrett/.cloudflared/cert.pem";
 
 
 sops.secrets."cloudflared/test" = {
