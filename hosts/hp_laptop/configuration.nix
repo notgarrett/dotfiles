@@ -139,7 +139,6 @@
     unityhub
     gdb
     julia-bin
-    nil
     nixfmt
     blender
     libgccjit

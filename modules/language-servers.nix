@@ -16,9 +16,10 @@ with lib; {
       omnisharp-roslyn
       vscode-extensions.vadimcn.vscode-lldb
       sumneko-lua-language-server
-      nodePackages.typescript-language-server
+      nodePackages.
+      typescript-language-server
       rust-analyzer
-      rust-analyzer
+      nil
       # Add packages you want to install
     ];
   };
