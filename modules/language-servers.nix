@@ -20,6 +20,7 @@ with lib; {
       typescript-language-server
       rust-analyzer
       nil
+      clang
       # Add packages you want to install
     ];
   };
