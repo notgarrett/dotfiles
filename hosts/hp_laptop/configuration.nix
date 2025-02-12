@@ -82,6 +82,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    hellvetica
     liberation_ttf
     fira-code
     fira-code-symbols
@@ -110,6 +111,7 @@
       kitty
       tor-browser-bundle-bin
       pavucontrol
+      zoom
       #  thunderbird
     ];
   };
