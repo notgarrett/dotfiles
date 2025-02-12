@@ -86,6 +86,11 @@ require 'lspconfig'.pyright.setup({
   capabilites = lsp_capabilities,
 })
 
+-- Clang
+require 'lspconfig'.clangd.setup({
+  capabilites = lsp_capabilities,
+})
+
 
 -- luasnip setup
 local status_ok, luasnip = pcall(require, "luasnip")

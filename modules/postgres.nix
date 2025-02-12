@@ -11,6 +11,10 @@ with lib; {
   };
 
   config = mkIf config.postgres.enable {
+
+    # services.mongodb.enable = true;
+    # Remind me to turn this module into a general purpose database module.
+
     services.postgresql = {
 
       enable = true;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, stylix, ... }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "garrett";
@@ -24,6 +24,7 @@
     plantuml
     base16-schemes
     ungoogled-chromium
+    firefox
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -38,7 +39,20 @@
     ./home-manager/kitty.nix
     ./home-manager/firefox.nix
     ./home-manager/wayland/default.nix
+    stylix.homeManagerModules.stylix
+    ./modules/stylix.nix
   ];
+
+  programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+
+    zsh.enable = true; # see note on other shells below
+    starship.enable = true;
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

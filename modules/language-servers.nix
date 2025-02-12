@@ -10,14 +10,14 @@ with lib; {
   };
 
   config = mkIf config.language-servers.enable {
+
     environment.systemPackages = with pkgs; [
       lldb_18
       nixfmt
       omnisharp-roslyn
       vscode-extensions.vadimcn.vscode-lldb
       sumneko-lua-language-server
-      nodePackages.
-      typescript-language-server
+      nodePackages.typescript-language-server
       rust-analyzer
       nil
       clang

@@ -59,12 +59,6 @@
   users.defaultUserShell = pkgs.zsh;
   programs.starship.enable = true;
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "backup";
-    users = { "garrett" = import ../../home.nix; };
-  };
-
   services.ollama = {
     enable = true;
     acceleration = "cuda";
@@ -181,7 +175,7 @@
 
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
-  
+
   sops.age.keyFile = "/home/garrett/.config/sops/age/keys.txt";
 
   # Bluetooth things.
