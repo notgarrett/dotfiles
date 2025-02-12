@@ -53,10 +53,6 @@
   i18n.defaultLocale = "en_CA.UTF-8";
   # Enable flakes 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Zsh
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  programs.starship.enable = true;
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };

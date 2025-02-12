@@ -24,7 +24,6 @@
     plantuml
     base16-schemes
     ungoogled-chromium
-    firefox
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -39,7 +38,6 @@
     ./home-manager/kitty.nix
     ./home-manager/firefox.nix
     ./home-manager/wayland/default.nix
-    stylix.homeManagerModules.stylix
     ./modules/stylix.nix
   ];
 

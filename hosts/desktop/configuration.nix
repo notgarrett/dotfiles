@@ -55,9 +55,6 @@
   # Enable flakes 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Zsh
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  programs.starship.enable = true;
 
   services.ollama = {
     enable = true;
@@ -121,7 +118,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    starship
     vesktop
     git
     python3
@@ -183,6 +179,15 @@
   hardware.bluetooth.powerOnBoot =
     true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
+
+ home-manager = {
+        extraSpecialArgs = { inherit inputs; };
+        backupFileExtension = "backup";
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users = { "garrett" = import ../../home.nix; };
+      };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
