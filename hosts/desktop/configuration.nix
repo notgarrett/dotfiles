@@ -17,6 +17,7 @@
     ../../modules/kde.nix
     ../../modules/stylix.nix
     ../../modules/cloudflared.nix
+    ../../modules/minecraft.nix
   ];
 
   language-servers.enable = true;
@@ -142,6 +143,7 @@
     openssl.dev
     pkg-config
     libreoffice
+    parsec-bin
     gtk3
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix.url = "github:Mic92/sops-nix";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     stylix.url = "github:danth/stylix";
 
