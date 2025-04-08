@@ -1,38 +1,26 @@
+{ config, pkgs, lib, ... }:
 
-{ pkgs, lib, inputs, ... }:
-
+let
+  modpack = pkgs.fetchPackwizModpack {
+    url = "https://github.com/Misterio77/Modpack/raw/0.2.9/pack.toml";
+    packHash = "sha256-L5RiSktqtSQBDecVfGj1iDaXV+E90zrNEcf4jtsg+wk=";
+  };
+in
 {
-  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
-  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
-
-  services.minecraft-servers = {
+  services.minecraft-servers.servers.cool-modpack = {
     enable = true;
-    eula = true;
-
-    package = pkgs.minecraft-server-1-16; # Use a version compatible with Minecraft Eternal (e.g., 1.16.5)
-    dataDir = "/var/lib/someotherdir";
-
-    servers = {
-      minecraft-eternal-server = {
-        enable = true;
-        package = pkgs.minecraft-server-forge-1_16_5; # Use Forge, compatible with Minecraft Eternal
-
-        serverProperties = {/* Define the properties for Minecraft Eternal, e.g., difficulty, max players */};
-        whitelist = {/* Set whitelist if needed */};
-
-        symlinks = 
-        let
-          modpack = (pkgs.fetchPackwizModpack {
-            url = "https://minecraft-eternal-curseforge-url/pack.toml"; # Get the actual URL for Minecraft Eternal's pack.toml
-            packHash = "sha256-<hash>"; # Provide the correct hash for pack.toml
-          });
-        in {
-          "mods" = "${modpack}/mods"; # Link to the modpack's mods
-        };
+    package = pkgs.fabricServers.fabric-1_18_2.override { loaderVersion = "0.14.9"; };
+    symlinks = {
+      "mods" = "${modpack}/mods";
+    };
+    files = {
+      "config" = "${modpack}/config";
+      "config/mod1.yml" = "${modpack}/config/mod1.yml";
+      "config/mod2.conf" = "${modpack}/config/mod2.conf";
+      # You can add files not on the modpack, of course
+      "config/server-specific.conf".value = {
+        example = "foo-bar";
       };
     };
   };
-
-  # Other configuration...
 }
-

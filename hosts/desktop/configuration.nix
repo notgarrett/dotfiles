@@ -18,6 +18,7 @@
     ../../modules/stylix.nix
     ../../modules/cloudflared.nix
     ../../modules/minecraft.nix
+    ../../modules/gpupassthrough.nix
   ];
 
   language-servers.enable = true;
@@ -31,7 +32,8 @@
   services.flatpak.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
+ boot.kernelModules = [ "xpad" "vfio-pci" ];
+  boot.kernelParams = ["intel_iommu=on"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -77,7 +79,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
   };
 
   fonts.packages = with pkgs; [
@@ -119,6 +121,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    looking-glass-client
     vesktop
     git
     python3
@@ -126,6 +129,7 @@
     typescript
     cloudflared
     nodejs
+    xpad
     cargo
     rustc
     rustfmt
@@ -145,6 +149,10 @@
     libreoffice
     parsec-bin
     gtk3
+    libuuid
+    dbus
+    alsa-lib
+    zoom
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
@@ -157,6 +165,7 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
 
   # List services that you want to enable:
 
@@ -182,14 +191,13 @@
     true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
 
- home-manager = {
-        extraSpecialArgs = { inherit inputs; };
-        backupFileExtension = "backup";
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users = { "garrett" = import ../../home.nix; };
-      };
-
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users = { "garrett" = import ../../home.nix; };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
