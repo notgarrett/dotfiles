@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix.url = "github:Mic92/sops-nix";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     stylix.url = "github:danth/stylix";
 
@@ -15,27 +16,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixos-hardware, sops-nix, ...
-    }@inputs: {
-
-      home-manager.nixosModules.home-manager = {
-
-        extraSpecialArgs = { inherit inputs; };
-        backupFileExtension = "backup";
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        users = { "garrett" = import ./home.nix; };
-      };
-
+  outputs = { self, nixpkgs, nix-minecraft, home-manager, stylix, nixos-hardware
+    , sops-nix, ... }@inputs: {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/desktop/configuration.nix
             nixos-hardware.nixosModules.gigabyte-b550
-            home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
             stylix.nixosModules.stylix
+            nix-minecraft.nixosModules.minecraft-servers
+            { nixpkgs.overlays = [ inputs.nix-minecraft.overlay ]; }
           ];
         };
         framework = nixpkgs.lib.nixosSystem {
@@ -43,7 +35,6 @@
           modules = [
             ./hosts/framework/configuration.nix
             home-manager.nixosModules.home-manager
-
             stylix.nixosModules.stylix
           ];
         };

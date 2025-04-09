@@ -12,8 +12,11 @@ with lib; {
   config = mkIf config.steam.enable {
     environment.systemPackages = with pkgs;
       [
+        protontricks
         # Add packages you want to install
       ];
+
+
 
     # Steam 
     programs.steam = {
