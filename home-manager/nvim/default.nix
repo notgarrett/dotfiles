@@ -17,6 +17,8 @@
     viAlias = true;
     vimAlias = true;
 
+    
+
     # extraLuaConfig = ''
     #    ${builtins.readFile ./lua/keymaps.lua}
     #    ${builtins.readFile ./lua/options.lua}

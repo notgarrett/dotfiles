@@ -43,6 +43,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   # Enable networking
   networking.networkmanager.enable = true;
+networking.nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "9.9.9.9" ];
 
   services.upower.enable = true;
 
@@ -123,8 +124,6 @@
     git
     python3
     r2modman
-    typescript
-    nodejs
     cargo
     rustc
     rustfmt
@@ -141,6 +140,7 @@
     openssl.dev
     pkg-config
     libreoffice
+    blender-hip
     google-chrome
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
