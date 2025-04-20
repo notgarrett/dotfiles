@@ -1,54 +1,63 @@
-{ pkgs, config, ... }:
 let
-  # Change this to your username.
-  user = "garrett";
-  # Change this to match your system's CPU.
-  platform = "intel";
-  # Change this to specify the IOMMU ids you wrote down earlier.
-  vfioIds = [ "10de:2484" "10de:228b" ];
-in {
-  # Configure kernel options to make sure IOMMU & KVM support is on.
-  boot = {
-    kernelModules = [ "kvm-${platform}" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-    kernelParams = [ "${platform}_iommu=on" "${platform}_iommu=pt" "kvm.ignore_msrs=1" ];
-    extraModprobeConfig = "options vfio-pci ids=${builtins.concatStringsSep "," vfioIds}";
-  };
-
-  # Add a file for looking-glass to use later. This will allow for viewing the guest VM's screen in a
-  # performant way.
-  systemd.tmpfiles.rules = [
-      "f /dev/shm/looking-glass 0660 ${user} qemu-libvirtd -"
+  # RTX 3070 Ti
+  gpuIDs = [
+    "10de:2482" # Graphics
+    "10de:228b" # Audio
   ];
+in { pkgs, lib, config, ... }: {
+  options.vfio.enable = with lib;
+    mkEnableOption "Configure the machine for VFIO";
+  config = let cfg = config.vfio;
+  in {
+    boot = {
+      initrd.kernelModules = [
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
 
-  # Add virt-manager and looking-glass to use later.
-  environment.systemPackages = with pkgs; [
-      virt-manager
-      looking-glass-client
-  ];
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_uvm"
+        "nvidia_drm"
+      ];
 
-  # Enable virtualisation programs. These will be used by virt-manager to run your VM.
-  virtualisation = {
-     libvirtd = {
-       enable = true;
-       extraConfig = ''
-         user="${user}"
-       '';
-
-       # Don't start any VMs automatically on boot.
-       onBoot = "ignore";
-       # Stop all running VMs on shutdown.
-       onShutdown = "shutdown";
-
-       qemu = {
-         package = pkgs.qemu_kvm;
-         ovmf.enable = true;
-         verbatimConfig = ''
-            namespaces = []
-           user = "+${builtins.toString config.users.users.${user}.uid}"
-         '';
-       };
+      kernelParams = [
+        # enable IOMMU
+        "intel_iommu=on"
+      ] ++ lib.optional cfg.enable
+        # isolate the GPU
+        ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
     };
-  };
 
-  users.users.${user}.extraGroups = [ "qemu-libvirtd" "libvirtd" "disk" ];
+ systemd.tmpfiles.rules = [
+    # This ensures the libvirt socket is accessible to the libvirtd group
+    "f /run/libvirt/libvirt-sock 0660 root libvirtd -"
+  ];
+    programs.virt-manager.enable = true;
+
+    users.groups.libvirtd.members = [ "garrett" ];
+
+    virtualisation.libvirtd = {
+      enable = true;
+      
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd
+          ];
+        };
+      };
+    };
+
+    hardware.opengl.enable = true;
+    virtualisation.spiceUSBRedirection.enable = true;
+  };
 }
+

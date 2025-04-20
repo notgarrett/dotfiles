@@ -16,8 +16,6 @@ with lib; {
         # Add packages you want to install
       ];
 
-
-
     # Steam 
     programs.steam = {
       enable = true;

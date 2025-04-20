@@ -32,8 +32,8 @@
   services.flatpak.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
- boot.kernelModules = [ "xpad" "vfio-pci" ];
-  boot.kernelParams = ["intel_iommu=on"];
+  boot.kernelModules = [ "xpad" "vfio-pci" ];
+  boot.kernelParams = [ "intel_iommu=on" "kvm-intel" ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -99,7 +99,8 @@
   users.users.garrett = {
     isNormalUser = true;
     description = "garrett";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu" "libvirt-qemu"];
+
     packages = with pkgs; [
       kate
       dolphin
@@ -165,7 +166,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
 
   # List services that you want to enable:
 

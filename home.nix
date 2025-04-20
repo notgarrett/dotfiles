@@ -41,10 +41,7 @@
     ./modules/stylix.nix
   ];
 
-
-services.dunst = {
-  enable = true;
-  };
+  services.dunst = { enable = true; };
 
   programs = {
     direnv = {
