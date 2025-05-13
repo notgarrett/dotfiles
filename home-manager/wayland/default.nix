@@ -9,8 +9,8 @@
     settings = {
       preload = [ "../../images/chickenbackground.jpg" ];
       wallpaper = [
-        "HDMI-A-1,../../images/chickenbackground.jpg"
-        "HDMI-A-2,../../images/chickenbackground.jpg"
+        "HDMI-A-1,../../images/marioinvonsole.png"
+        "HDMI-A-2,../../images/gamebois.png"
       ];
     };
 
