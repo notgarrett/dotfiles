@@ -10,9 +10,11 @@ with lib; {
   };
 
   config = mkIf config.steam.enable {
+    boot.kernelModules = [ "xpad" "vfio-pci" ];
     environment.systemPackages = with pkgs;
       [
         protontricks
+        xpad
         # Add packages you want to install
       ];
 

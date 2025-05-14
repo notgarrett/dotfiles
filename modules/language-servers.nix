@@ -11,6 +11,7 @@ with lib; {
 
   config = mkIf config.language-servers.enable {
 
+# Should I just switch these out for dev shells? Like fr though? 
     environment.systemPackages = with pkgs; [
       lldb_18
       nixfmt
@@ -21,8 +22,7 @@ with lib; {
       rust-analyzer
       pyright
       nil
-      clang
-      # Add packages you want to install
+      rustfmt
     ];
   };
 }

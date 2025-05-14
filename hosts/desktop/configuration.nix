@@ -16,6 +16,7 @@
     ../../modules/minecraft.nix
     ../../modules/gpupassthrough.nix
     ../../scripts
+    ../../modules/system-packages.nix
   ];
 
   language-servers.enable = true;
@@ -30,7 +31,6 @@
   virtualisation.docker.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "xpad" "vfio-pci" ];
   boot.kernelParams = [ "intel_iommu=on" "kvm-intel" ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -100,18 +100,7 @@
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu" "libvirt-qemu"];
 
     packages = with pkgs; [
-      kate
-      dolphin
-      rofi-wayland
-      eza
-      bat
-      ripgrep
-      spotify
-      prismlauncher
-      obsidian
-      fastfetch
-      libreoffice-qt
-    ];
+         ];
   };
 
   # Allow unfree packages
@@ -120,39 +109,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    looking-glass-client
-    vesktop
-    git
-    python3
-    r2modman
-    typescript
-    cloudflared
-    nodejs
-    xpad
-    cargo
-    rustc
-    rustfmt
-    openssl
-    pkg-config
-    obs-studio
-    corepack_22
-    unityhub
-    gdb
-    julia-bin
-    nil
-    nixfmt
-    blender
-    libgccjit
-    openssl.dev
-    pkg-config
-    libreoffice
-    parsec-bin
-    pavucontrol
-    gtk3
-    libuuid
-    dbus
-    alsa-lib
-    zoom
+   
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget

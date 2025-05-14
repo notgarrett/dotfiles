@@ -11,9 +11,10 @@
     ../../modules/hyprland.nix
     ../../modules/language-servers.nix
     ../../modules/steam.nix
-    ../../modules/kde.nix
     ../../modules/stylix.nix
     ../../modules/cloudflared.nix
+    ../../scripts
+    ../../modules/system-packages.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -97,50 +98,14 @@
     description = "garrett";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kate
-      dolphin
-      rofi-wayland
-      eza
-      bat
-      ripgrep
-      spotify
-      prismlauncher
-      obsidian
-      fastfetch
-      kitty
-      tor-browser-bundle-bin
-      pavucontrol
-      #  thunderbird
+           #  thunderbird
     ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    starship
-    vesktop
-    git
-    python3
-    r2modman
-    typescript
-    nodejs
-    cargo
-    rustc
-    rustfmt
-    openssl
-    pkg-config
-    obs-studio
-    corepack_22
-    unityhub
-    gdb
-    julia-bin
-    nixfmt
-    blender
-    libgccjit
-    openssl.dev
-    pkg-config
-    libreoffice
-    google-chrome
+    
     # List package dependencies here
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget

@@ -21,10 +21,23 @@
     starship
     zathura
     filezilla
-    plantuml
     base16-schemes
     ungoogled-chromium
     pass
+    kate
+    dolphin
+    rofi-wayland
+    eza
+    bat
+    ripgrep
+    spotify
+    prismlauncher
+    obsidian
+    fastfetch
+    libreoffice-qt
+    fastfetch
+    tor-browser-bundle-bin
+    pavucontrol
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
