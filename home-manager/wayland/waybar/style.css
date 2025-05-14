@@ -1,280 +1,90 @@
-* {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+
+/* the bar itself */
+#waybar {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.6);
+
+	min-height: 0;  /* size is determined via font size and paddings automatically */
+	border-radius: 0;  /* I don't want rounded edges for the bar */
+
+	/*
+	Raleway doesn't seem to support tnum, so the width jumps while the clock is running, so I use
+	a monospace font for the bar
+	*/
+	font-family: "Iosevka Funke", "Font Awesome 6 Free Solid";
+	font-size: 11pt;
 }
 
-window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+/* set base padding for modules and workspace buttons */
+#workspaces button, .module {
+	padding: 0 9px;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+/* no padding for horizontal modules, because their child modules have their own */
+.module.horizontal {
+	padding: 0;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
+/* all workspace buttons */
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+	border-radius: 0;
+
+	/* prevents new workspaces being opaque briefly before animating to the target color */
+	background-color: rgba(0, 0, 0, 0);
+
+	/* nice color transitions for workspace buttons */
+	transition-property: background-color;
+	transition-duration: .4s;
 }
 
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+/* workspace buttons except urgent ones when hovering */
+#workspaces button:hover, #workspaces button.focused:hover {
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
+/* currently open workspace */
 #workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+	background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* workspaces that have a notification or something similar */
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+	background-color: rgba(204, 170, 17, 0.8);
 }
 
+/* currently enabled sway mode (e.g. resizing mode), if any */
 #mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+	background-color: rgba(196, 71, 49, 0.8);
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#mpd {
-    padding: 0 10px;
-    color: #ffffff;
+/* media player info */
+#mpris {
+	font-family: "Raleway";
 }
 
-#window,
-#workspaces {
-    margin: 0 4px;
+/* animation */
+@keyframes blink {
+	to {
+		background-color: rgba(196, 71, 49, 0.8);
+	}
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #64727D;
+#idle_inhibitor.activated, #custom-notifications.deactivated {
+	animation-name: blink;
+	animation-duration: 2s;
+	animation-timing-function: steps(16);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+	background-color: inherit;
 }
 
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-#memory {
-    background-color: #9b59b6;
-}
-
-#disk {
-    background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
+#battery.warning:not(.charging) {
+	animation-name: blink;
+	animation-duration: 0.6s;
+	animation-timing-function: steps(8);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
