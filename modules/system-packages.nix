@@ -1,4 +1,4 @@
-{  pkgs,  ... }:
+{  pkgs,  lib, ... }:
 # Just a cumulation of non-specific device packages to be shared across all systems. 
 {
 
@@ -30,4 +30,15 @@
       docker-compose
       google-chrome # Not a fan of this one
     ];
+
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+    "obsidian"
+    "spotify"
+
+
+    ];
+
+
 }
