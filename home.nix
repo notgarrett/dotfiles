@@ -30,9 +30,7 @@
     eza
     bat
     ripgrep
-    spotify
     prismlauncher
-    obsidian
     fastfetch
     libreoffice-qt
     fastfetch
