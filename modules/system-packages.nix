@@ -13,6 +13,8 @@
       openssl
       pkg-config
       obs-studio
+      obsidian
+      spotify
       corepack_22
       unityhub
       gdb
