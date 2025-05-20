@@ -2,6 +2,6 @@
 { pkgs, lib, ... }:
 
 {
- imports = [ ./editconfig.nix ];
+  imports = [ ./editconfig.nix ];
 }
 

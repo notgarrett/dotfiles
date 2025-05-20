@@ -9,6 +9,7 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
 
     stylix.url = "github:danth/stylix";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     home-manager = {
       url = "github:nix-community/home-manager";

@@ -45,6 +45,8 @@
 
     ];
 
+  programs.zellij.enable = true;
+
   imports = [
     ./home-manager/zsh.nix
     ./home-manager/git.nix

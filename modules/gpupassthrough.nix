@@ -29,17 +29,17 @@ in { pkgs, lib, config, ... }: {
         ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
     };
 
- systemd.tmpfiles.rules = [
-    # This ensures the libvirt socket is accessible to the libvirtd group
-    "f /run/libvirt/libvirt-sock 0660 root libvirtd -"
-  ];
+    systemd.tmpfiles.rules = [
+      # This ensures the libvirt socket is accessible to the libvirtd group
+      "f /run/libvirt/libvirt-sock 0660 root libvirtd -"
+    ];
     programs.virt-manager.enable = true;
 
     users.groups.libvirtd.members = [ "garrett" ];
 
     virtualisation.libvirtd = {
       enable = true;
-      
+
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;

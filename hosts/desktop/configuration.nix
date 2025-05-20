@@ -44,6 +44,14 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+
+
+fileSystems."/mnt/data" = {
+  device = "/dev/disk/by-uuid/a6cd37ea-f9bc-4215-9ac7-cdd06e13417b";
+  fsType = "ext4";
+  options = ["users" "defaults" "exec"];
+};
+
   # Enable networking
   networking.networkmanager.enable = true;
   # networking.networkmanager.wifi.backend = "wpa_supplicant";
@@ -97,10 +105,10 @@
   users.users.garrett = {
     isNormalUser = true;
     description = "garrett";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu" "libvirt-qemu"];
+    extraGroups =
+      [ "networkmanager" "wheel" "libvirtd" "kvm" "qemu" "libvirt-qemu" ];
 
-    packages = with pkgs; [
-         ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -108,12 +116,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-   
-    # List package dependencies here
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-  ];
+  environment.systemPackages = with pkgs;
+    [
+
+      # List package dependencies here
+      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      #  wget
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -149,7 +158,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "backup";
+    backupFileExtension = "backurp";
     useGlobalPkgs = true;
     useUserPackages = true;
     users = { "garrett" = import ../../home.nix; };

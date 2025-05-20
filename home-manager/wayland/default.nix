@@ -5,22 +5,19 @@
   };
 
   services.hyprpaper = let
-  mario = builtins.toString ../../images/marioinconsole.jpg;
-  gamebois = builtins.toString ../../images/gamebois.png;
-in
-{
+    mario = builtins.toString ../../images/marioinconsole.jpg;
+    gamebois = builtins.toString ../../images/gamebois.png;
+  in {
     enable = true;
     settings = {
       preload = [ mario gamebois ];
-      wallpaper = [
-        "HDMI-A-1,${mario}"
-        "HDMI-A-2,${gamebois}" ];
+      wallpaper = [ "HDMI-A-1,${mario}" "HDMI-A-2,${gamebois}" ];
+    };
   };
-};
   programs.waybar = {
     enable = true;
-    style = builtins.readFile ./waybar/style.css;
-  settings = {
+    #style = builtins.readFile ./waybar/style.css;
+    settings = {
       mainBar = {
         layer = "top";
         modules-left = [ "hyprland/workspaces" ];
@@ -35,9 +32,7 @@ in
           "clock"
         ];
 
-        tray = {
-          spacing = 10;
-        };
+        tray = { spacing = 10; };
 
         clock = {
           tooltip-format = "{:%Y-%m-%d | %H:%M}";
@@ -45,22 +40,16 @@ in
           format = "{:%a %Y-%m-%d %l:%M %p}";
         };
 
-        cpu = {
-          format = "　{usage}%";
-        };
+        cpu = { format = "　{usage}%"; };
 
-        memory = {
-          format = "　{}%";
-        };
+        memory = { format = "　{}%"; };
 
         backlight = {
           format = "　{percent}%";
           format-icons = [ "" "" ];
         };
 
-        battery = {
-          format = "　{capacity}%";
-        };
+        battery = { format = "　{capacity}%"; };
 
         network = {
           format-wifi = "　{signalStrength}%";
@@ -84,7 +73,8 @@ in
           on-click = "pavucontrol";
         };
       };
-    };  };
+    };
+  };
 
 }
 

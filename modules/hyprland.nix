@@ -24,7 +24,10 @@ with lib; {
 
     xdg.portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-hyprland ];
+      config= {
+        common.default = ["gtk"];
+      };
     };
 
     services.greetd = {
