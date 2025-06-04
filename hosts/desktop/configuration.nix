@@ -44,13 +44,11 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-
-
-fileSystems."/mnt/data" = {
-  device = "/dev/disk/by-uuid/a6cd37ea-f9bc-4215-9ac7-cdd06e13417b";
-  fsType = "ext4";
-  options = ["users" "defaults" "exec"];
-};
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-uuid/a6cd37ea-f9bc-4215-9ac7-cdd06e13417b";
+    fsType = "ext4";
+    options = [ "users" "defaults" "exec" ];
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
