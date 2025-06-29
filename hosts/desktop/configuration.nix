@@ -30,6 +30,7 @@
   services.flatpak.enable = true;
   virtualisation.docker.enable = true;
 
+  hardware.xpadneo.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelModules = [ "xpad" "vfio-pci" ];
