@@ -31,6 +31,8 @@
   virtualisation.docker.enable = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernelModules = [ "xpad" "vfio-pci" ];
   boot.kernelParams = [ "intel_iommu=on" "kvm-intel" ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -114,13 +116,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
+  environment.systemPackages = with pkgs; [
+    protontricks
+    xpad
 
-      # List package dependencies here
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-    ];
+    # List package dependencies here
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
