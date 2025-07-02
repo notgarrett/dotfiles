@@ -20,9 +20,9 @@
   ];
 
   language-servers.enable = true;
-  hyprland.enable = true;
+  hyprland.enable = false;
   nvidia.enable = true;
-  kde.enable = false;
+  kde.enable = true;
   postgres.enable = true;
   steam.enable = true;
   gnome.enable = false;
@@ -182,7 +182,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "backurp";
+    backupFileExtension = "backup2";
     useGlobalPkgs = true;
     useUserPackages = true;
     users = { "garrett" = import ../../home.nix; };
