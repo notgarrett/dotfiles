@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }: {
 
-  home.packages = with pkgs; [ libgccjit ];
+  home.packages = with pkgs; [
+    libgccjit
+    evil-helix
+  ]; # Evil helix literally just being a backup.
 
   home.file = {
     ".config/nvim" = {
