@@ -30,8 +30,33 @@
   services.flatpak.enable = true;
   virtualisation.docker.enable = true;
 
+  hardware.xpadneo.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernelModules = [ "xpad" "vfio-pci" ];
   boot.kernelParams = [ "intel_iommu=on" "kvm-intel" ];
+  # Enable Bluetooth
+  hardware.bluetooth = {
+    settings.General = {
+      experimental = true; # show battery
+
+      # https://www.reddit.com/r/NixOS/comments/1ch5d2p/comment/lkbabax/
+      # for pairing bluetooth controller
+      Privacy = "device";
+      JustWorksRepairing = "always";
+      Class = "0x000100";
+      FastConnectable = true;
+    };
+  };
+
+  boot = {
+    extraModulePackages = with config.boot.kernelPackages; [ xpadneo ];
+    extraModprobeConfig = ''
+      options bluetooth disable_ertm=Y
+    '';
+    # connect xbox controller
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -114,13 +139,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
+  environment.systemPackages = with pkgs; [
+    protontricks
+    xpad
 
-      # List package dependencies here
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-    ];
+    # List package dependencies here
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -156,7 +182,7 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "backurp";
+    backupFileExtension = "backup3";
     useGlobalPkgs = true;
     useUserPackages = true;
     users = { "garrett" = import ../../home.nix; };
