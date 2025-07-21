@@ -18,6 +18,7 @@
     corepack_22
     unityhub
     gdb
+    lazygit
     libgccjit
     openssl.dev
     pkg-config
