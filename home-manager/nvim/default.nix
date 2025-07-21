@@ -1,13 +1,13 @@
 { config, pkgs, lib, ... }: {
 
-  home.packages = with pkgs; [
-    libgccjit
-    evil-helix
-  ]; # Evil helix literally just being a backup.
+  home.packages = with pkgs;
+    [ libgccjit ]; # Evil helix literally just being a backup.
 
   # I am lazy so for now it is here.
 
   programs.helix = {
+    package = pkgs.evil-helix;
+    enable = true;
     settings = {
       editor.cursor-shape = {
         normal = "block";
